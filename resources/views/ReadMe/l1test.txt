@@ -1,0 +1,45 @@
+interface paymentgatway {
+    public function pay($amount);
+}
+
+class stripemethod implements paymentgatway {
+    public function pay($amount) {
+        echo "pay amount $amount";
+    }
+}
+
+function Money(paymentgatway int $money) {
+     paymentgatway->pay($money);
+}
+
+$stripmethod = new stripemethod();
+
+Money($stripmethod, 50);
+
+
+trait Log {
+    public function identify() {
+        echo "this is a trait method";
+    }
+}
+
+class User {
+    use Log;
+}
+
+$User = new User();
+$User->identify();
+
+index array:
+-----------
+$car= array["bmw", "hondo", "hyundai"];
+print_r($car[0]);
+
+associative array:
+------------------
+$fruits = array["key" => "value"];
+
+$product = array[array["key" => "value"],
+array["key" => "value"],
+array["key" => "value"],
+];

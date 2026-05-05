@@ -1,0 +1,6 @@
+SELECT DISTINCT salary FROM Employees ORDER BY salary DESC LIMIT 1 OFFSET 1;
+
+DISTICT - ensure avoid repeative values.
+ORDER BY salary DESC - which returns the results from highest to lowest in order
+Limit - which return the first row.
+offset 1 - which skip the first row and return the second row.

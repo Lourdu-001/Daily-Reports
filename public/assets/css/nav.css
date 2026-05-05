@@ -1,0 +1,164 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* ── Navbar Base ── */
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    padding: 1.2rem 0;
+}
+
+/* Hide navbar - slides up */
+#navbar.hidden {
+    transform: translateY(-100%);
+}
+
+/* Transparent when at top of page */
+#navbar.at-top {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+/* ── Navbar Container ── */
+.navbar-container {
+    max-width: 1215px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+/* ── Nav Links ── */
+.navbar-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: space-between;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: #333333;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    transition: color 0.2s ease;
+}
+
+.navbar-links a:hover,
+.navbar-links a.active {
+    color: #28511C;
+    font-weight: 600;
+}
+
+/* ── Dropdown ── */
+.has-dropdown {
+    position: relative;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    padding: 0.5rem 0;
+    list-style: none;
+    min-width: 150px;
+    z-index: 100;
+}
+
+.dropdown li a {
+    display: block;
+    padding: 0.5rem 1rem;
+    font-size: 13.89px;
+    font-weight: 300;
+}
+
+.has-dropdown:hover .dropdown {
+    display: block;
+}
+
+/* ── CTA Button ── */
+.cta-btn {
+    display: inline-flex;
+    padding: 13px 23px;
+    background-color: #28511C;
+    color: #ffffff !important;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    align-items:center;
+    gap: 0.5rem;
+}
+
+.cta-btn:hover {
+    background-color: #1e3d14;
+}
+
+/* ── Hamburger (Mobile) ── */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    transition: all 0.3s ease;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        padding: 1rem;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .navbar-links.open {
+        display: flex;
+    }
+
+    .navbar-cta {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}

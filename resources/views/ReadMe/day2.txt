@@ -1,0 +1,114 @@
+🎯 Day 2 Goals
+Today we upgrade your API to:
+
+1️⃣ Proper Validation
+2️⃣ Clean JSON Structure
+3️⃣ API Resources (Important for interviews)
+4️⃣ Exception Handling
+5️⃣ Soft Delete + Restore Endpoint
+6️⃣ Clean Architecture Understanding
+
+📈 Interview Perspective
+If interviewer asks:
+
+“Have you built APIs in Laravel?”
+
+After Day 2 you can say:
+
+Yes, I built RESTful APIs with validation, resource transformation, soft deletes and proper response structure.
+
+That’s powerful.
+
+=======================================
+
+⚡ Now Real Backend Question
+
+If I do:
+
+Task::find(2);
+
+And record 2 is soft deleted…
+
+Will it return the model? Or null?
+?????????????????????????????????
+
+Think carefully.
+
+Answer:
+-------
+
+When you run:
+
+Task::find(2);
+
+If record ID = 2 is soft deleted, Laravel will:
+
+👉 Return null
+
+Why?
+
+Because soft deletes automatically add this condition behind the scenes:
+
+WHERE deleted_at IS NULL
+
+So even though the record exists in the database, Eloquent behaves as if it doesn’t exist.
+
+It does NOT return nullable values.
+It simply does not include soft-deleted rows in normal queries.
+
+🔥 Important Understanding
+
+Soft delete does not mean:
+
+“Values become null”
+
+It means:
+
+deleted_at column gets a timestamp.
+
+Example:
+
+id	title	deleted_at
+2	Task A	2026-02-28 10:22:00
+
+Since deleted_at is NOT NULL → Laravel hides it.
+
+✅ How To Fetch That Soft Deleted Record?
+Task::withTrashed()->find(2);
+
+Now it will return the model.
+
+🚀 Even More Important Question
+==========================
+
+👉 What do you think happens if we try to update() a soft deleted record without withTrashed()?
+????????????????????????????????
+
+❓ If a record is soft deleted, can we update it using:
+Task::onlyTrashed()->update([...]);
+⚠️ Not directly like that.
+
+Why?
+
+Because:
+
+Task::onlyTrashed()->update([...]);
+
+Will update ALL soft deleted records, not a specific one.
+
+That’s dangerous.
+
+✅ Correct Way to Update a Soft Deleted Record
+
+You must first fetch it including trashed records:
+
+$task = Task::withTrashed()->findOrFail($id);
+
+$task->update([
+    'title' => 'Updated title'
+]);
+
+
+
+
+

@@ -1,0 +1,75 @@
+what is Eloquent Model?
++++++++++++++++++++++++++
+
+Gemini said
+In Laravel, Eloquent is an Object-Relational Mapper (ORM) that makes interacting with your database feel like you are just playing with standard PHP objects.
+
+Instead of writing complex SQL queries like SELECT * FROM users WHERE active = 1;, you can simply write User::where('active', 1)->get();.
+
+1. How It Works (The Mapping)
+Eloquent follows the Active Record pattern. This means:
+
+A Database Table maps to a PHP Class (the Model).
+
+A Table Column maps to a Class Property.
+
+A Table Row maps to an Object Instance.
+
+
+example:
+----------
+
+Task	         Raw SQL / Query Builder	                        Eloquent ORM
+----             -----------------------                            ------------
+Fetch All	     DB::table('users')->get();	                        User::all();
+Find by ID	     DB::table('users')->where('id', 1)->first();	    User::find(1);
+Insert	         DB::table('users')->insert(['name' => 'Joe']);	    $user = new User; $user->name = 'Joe'; $user->save();
+
+-----------------------------------------------------
+
+1. what is soft delete:
+-------------------
+        soft delete is nothing but, deleting a row from the database by setting up with a timestamp. and allowing you to restore it later.
+
+2. can you explain what is __set(), __get(), __call(). I hope these or magic methods in laraval. what it does. what is the use of these. why we need them.?
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    __set() :
+    ---------
+        The __set() magic method is an Interceptor. it is triggered automatically when we try to write a data to a property that is either undefined or inaccessible within the class.
+
+    __get();
+        __get() is triggered whenever we read a property that is undefined and inaccessible.(protected and private)
+
+        example:
+        --------
+
+        class User() {
+            public function __get($name) {
+                return attributes[$name] ?? null;
+            }
+        }
+
+        You are exactly right! These are known as Magic Methods in PHP. While they are built into PHP itself, Laravel’s Eloquent uses them heavily to do its "magic."Magic methods always start with a double underscore __ and are triggered automatically when you interact with an object in a way it wasn't expecting.1. __get($property) and __set($property, $value)These are triggered when you try to access or write to a property that is not defined or is private in the class.__get(): Runs when you try to read $object->variable.__set(): Runs when you try to write $object->variable = 'value'.Why Laravel needs them:In an Eloquent Model, you don't actually define properties like public $name; or public $email;. Instead, Eloquent uses __get and __set to dynamically fetch those values from the database "attributes" array.PHP// Inside a Laravel Model
+$user = User::find(1);
+
+// This triggers __get('name') because 'name' isn't a real property in the User class.
+// Laravel looks inside its internal $attributes array and returns the value.
+echo $user->name; 
+2. __call($method, $arguments)This is triggered when you try to call a method that does not exist inside the class.Why Laravel needs them:This is how Laravel provides such a clean syntax for things like the Query Builder. When you call User::where(...), the User model doesn't actually have a where method!Instead:__call is triggered.Laravel realizes you want to run a database query.It "passes the ball" to the Query Builder class to handle the work.PHP$user = new User();
+$user->someNonExistentMethod(); // Triggers __call('someNonExistentMethod', [])
+3. Summary Table: Use CasesMethodTriggered When...The "Why" (Use Case)__get()You read a hidden/missing property.To format data (Accessors) or fetch DB columns.__set()You write to a hidden/missing property.To validate data or encrypt passwords before saving.__call()You call a missing method on an object.To forward calls to other helper classes (Proxying).__callStatic()You call a missing method statically (User::find()).To provide the "Facade" style syntax Laravel is famous for.
+
+3. what is the use of _tostring()?
+-----------------------------------
+  __tostring() used when object is printed.
+
+4. what is __invoke?
+--------------------
+ __invoke makes object callable like a function.
+
+5. what is __construct() lifecycle methods?
+it runs the moment you use the new keyword.
+
+Best use: Initializing database connections, setting default values, or requiring "must-have" data (like an API key) to make the object work.
+ __construct is the birth method. which initate automatically when we  '

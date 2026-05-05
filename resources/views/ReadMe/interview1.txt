@@ -1,0 +1,128 @@
+oops:
+------
+what is encapsulation?
+
+------------------------------------------------
+
+✔ Encapsulation
+++++++++++++++++++
+
+Private properties + public methods.
+
+class User {
+    private $name;
+
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+}
+
+Explain WHY private is used.
+
+Explanation:
+-------------
+
+In your example, using private is all about protection and control. If you made $name public, anyone could bypass your setName method and change the data directly, which often leads to "dirty" data or bugs.
+
+Here is why private is the standard choice in this scenario:
+
+1. Data Validation (The Filter)
+If $name is private, the only way to change it is through setName(). This gives you the power to enforce rules.
+
+If it were public, someone could set the name to an empty string, an array, or even a malicious script. With private, you can do this:
+
+PHP
+public function setName($name) {
+    if (strlen($name) < 2) {
+        throw new Exception("Name is too short!");
+    }
+    $this->name = htmlspecialchars($name); // Security: prevent XSS
+}
+
+-----------------------------------------------------
+
+1. Namespace (They Will Ask Why)
+++++++++++++++++++++++++++++++++++++ 
+
+You should say:
+
+Namespace avoids class name collision and helps organize code logically.
+
+Example:
+------
+namespace App\Services;
+
+class PaymentService {}
+
+Then:
+
+use App\Services\PaymentService;
+
+Also Know:
+
+Fully qualified name: \App\Services\PaymentService
+
+----------------------------------------------
+
+⚡ Smart Preparation Plan (3–4 Hours Only)
+Hour 1:
+
+Revise OOP deeply.
+
+Hour 2:
+
+Magic methods practice writing examples.
+
+Hour 3:
+
+Namespace + Laravel core concepts.
+
+Hour 4:
+
+React hooks basics revision.
+
+Then STOP.
+
+Sleep properly.
+
+-------------------------------------------------------
+
+Instead of:
+
+“Namespace prevents collision.”
+
+Say:
+
+“In Laravel projects, since we have multiple classes like User in different folders, namespace prevents conflicts.”
+
+That sounds professional.
+
+----------------------------------------
+
+ok let me shoot my questions one by one. 
+
+__Construct()
+++++++++++++++
+1. we created taskService. but, what is the use of taskService in the project. For what purpose we can use it.
+
+2. __set() and get():
+    $obj = new TestMode();
+
+    $obj->name = "Dream";
+
+    usually we use echo the method to output the data, in different, here we directly set the name and get the name with a instance variable "name" how? and which is automaticall called the __get method.
+
+
+7. 
+
+
+
+
+
+
+
+

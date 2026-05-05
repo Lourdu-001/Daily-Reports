@@ -1,0 +1,46 @@
+🚀 Day 3 (Today) — Add Real Features
+
+We add:
+
+✅ Validation (FormRequest)
+
+✅ Pagination
+
+✅ Search filter
+
+✅ API Resource response formatting
+
+✅ Proper status codes
+
+This is what companies expect.
+
+==============================================
+
+what is the difference between StoreTaskRequest and TaskResource?
+???????????????????
+
+these two functionality wise totally different.
+
+1. storetaskrequest used to validate incoming request before reach controller logics.
+2. taskresource used to validate output response what client view.
+
+======================================================
+
+🧠 Interview Level Answer
+
+If interviewer asks:
+
+“What is difference between FormRequest and API Resource?”
+???????????????????????????????????
+
+You say:
+
+FormRequest validates incoming data before it reaches controller.
+Resource transforms outgoing model data into structured JSON responses.
+
+=========================================================
+
+compelted as of now:
+------------------
+
+

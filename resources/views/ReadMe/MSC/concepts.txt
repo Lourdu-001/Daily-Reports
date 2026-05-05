@@ -1,0 +1,73 @@
+1️⃣ Core PHP + OOP (TOP PRIORITY)
+
+You already studied some — now sharpen.
+
+Be ready to explain:
+Class & Object
+Inheritance
+Interface
+Trait
+Encapsulation
+Polymorphism
+
+class example:
+--------------
+class User {
+    public $name;
+    public $email;
+    private $password;
+
+    public function __constructor(array $data) {
+        $this->name=$data['name'] ?? 'default';
+        $this->email=$data['email'] ?? '';
+        $this->password=$data['password'] ?? '';
+    }
+
+    public function getLanguage(array $data): string {
+        echo "language changed" . $this->email;
+    }
+}
+
+$user = new User();
+$user->getLanguage();
+
+what is class?
+    class is a blueprint like template of different houses [ objects]. the object is guaranteed to have a same properties ans methods.
+
+what is inheritance?
+      inheritance is nothing but child class to the parent class. the child can have the access to the properties and methods with public and protected scope, but not the private scope.   
+
+
+1XX informational "Hold on, I am processing"
+2XX success       Everything went well, here is your data...
+3XX Redirection   Your resource moved. Go to this new address.
+4XX client error  you messed up. wrong uri, not logged in
+500 server error  I messed up. [ database connection, my code is crashed].
+
+201 - post data created successfully
+401 - unathorized vs 403 forbidden.
+402 - I don't know who you are. please log in.
+403 - i know who you are, you don't have permission to be here.
+404 - the requested uri is not exist
+500 - Internal server error.
+
+if($user_created) {
+    http_response_code(200);
+    echo "user created successfully;
+} else {
+    http_response_code(400);
+    echo "you sent a bad request";
+}
+
+the server doesn't know the user even a second. so, we need to identify the user by server.here jwt perform like a passport.
+
+JWT:
+---
+JWT is a string of text. that the server sends to client when user log in. then the client sends this "passport" back in the header
+of every future request.
+
+Header: tells the php which algorithm was used.
+payload: The actual data. Usually this is the user_id and the expiration_time.
+signature: signature is a secret seal. php takes the payload and header, and add a secret key. and hashesh them. 
+when the hacker try to change user_id in the payload. the signature won't match. the php will reject the token.
+

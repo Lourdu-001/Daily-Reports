@@ -1,0 +1,67 @@
+REACT QUESTIONS:
+---------------
+1. what is react?
+    React is a JavaScript library used to build user interfaces, especially single-page applications. It uses a Virtual DOM to efficiently update only the parts of the UI that change instead of reloading the entire page, which improves performance and user experience.
+
+2. Difference between dom and virtual dom?
+    The DOM (Document Object Model) is the actual browser representation of the UI. Any changes to it are relatively expensive because the browser has to re-render and repaint the page.
+
+    The Virtual DOM is a lightweight JavaScript object representation of the real DOM. React updates the Virtual DOM first, compares it with the previous version using a diffing algorithm, and then updates only the changed parts in the real DOM. This improves performance.
+
+3. what is useState?
+    useState is a React Hook that allows us to add state to functional components. It returns an array with two values: the current state and a setter function to update that state.
+
+    When the setter function is called, React updates the state and re-renders the component to reflect the new value.
+
+4. Why shouldn’t we update state like this?
+    Because directly mutating state does not trigger a re-render. React must be informed using the setter function so it can update the Virtual DOM and re-render the component properly.
+
+    i. Why shouldn’t we update state like this?
+    Because directly mutating state does not trigger a re-render. React must be informed using the setter function so it can update the Virtual DOM and re-render the component properly.
+
+5. what is useEffect() ?
+    useEffect is a React Hook used to handle side effects in functional components. Side effects include API calls, subscriptions, timers, or manual DOM updates.
+
+    i. Why do we need dependency array?
+    The dependency array tells React when to re-run the effect. It prevents unnecessary executions and improves performance by running the effect only when specified values change.
+
+    ii. What happens if you forget dependency array during API call?
+    It will cause infinite re-render because the effect runs after every render, and if the effect updates state, it triggers another render again.
+
+6. what is the difference between props and state?
+    Props are read-only data passed from a parent component to a child component. They allow communication between components.
+
+    State is internal data managed within a component. When state changes, React re-renders the component to update the UI.
+
+    i. Can a child modify props?
+    No. Props are read-only. If a child needs to modify data, it must call a function passed from the parent.
+
+7. what is the use of key?
+    The key prop helps React uniquely identify each element in a list. It allows React to efficiently compare the previous Virtual DOM with the new one during reconciliation. Without keys, React may re-render unnecessary elements, which can affect performance and cause UI bugs.
+
+8. what is controlled component?
+    A controlled component in React is a form element whose value is controlled by React state instead of the browser’s default behavior. The input field’s value is tied to a state variable, and any change is handled through an onChange event that updates the state. Because React controls the value, we can easily implement validation, conditional disabling of buttons, and other dynamic behaviors.
+
+9. What is an Uncontrolled Component?
+
+    Correct answer:
+    An uncontrolled component stores its state inside the DOM itself and is accessed using refs instead of React state.
+
+10. How does React communicate with laravel?
+    React communicates with Laravel through REST APIs using HTTP requests like GET, POST, PUT, and DELETE. React sends JSON data to Laravel, Laravel processes the request using controllers and Eloquent, stores data in the database, and returns a JSON response. React then updates the UI based on the response without refreshing the page.
+
+11. what is dependency injection?
+    Dependency Injection allows a class to receive its dependencies from outside instead of creating them itself. Laravel’s Service Container automatically resolves and injects those dependencies, which improves loose coupling and testability.
+
+12. what is middleware in laravel?
+    Gemini said
+    In Laravel, Middleware acts as a "filter" or a "middleman" for your HTTP requests.
+
+    When a user visits your website, their request doesn't go straight to the Controller. Instead, it passes through a series of "hoops" (middleware) that check, modify, or block the request before it reaches its destination.  
+
+13. what is  User::findorfail($id)
+
+14. what is mass assignment?
+    In Laravel, Mass Assignment is a process that allows you to save an entire array of data into a database model in a single line of code. Instead of setting each column value manually, you pass an array to the model's create() or update() methods.
+
+    While it is very convenient, it creates a serious security risk if not handled correctly.

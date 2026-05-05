@@ -1,0 +1,49 @@
+what is primary key and what is unique key in table:
+--------------------------------------------------
+
+PRIMARY KEY
+-----------
+
+Rules:
+
+1. Only one per table
+2. Cannot be NULL
+3. Always unique
+
+Example:
+
+CREATE TABLE users (
+    id INT PRIMARY KEY,
+    name VARCHAR(100)
+);
+
+UNIQUE KEY
+----------
+
+Rules:
+
+1. Can have multiple unique keys
+2. Ensures values are unique
+3. Can allow NULL
+
+Example:
+
+ALTER TABLE users
+ADD UNIQUE (email);
+
+Meaning:
+---------
+Two users cannot have the same email.
+
+CREATE TABLE users (
+    id int PRIMARY KEY,
+    name VARCHAR(100)
+)
+
+what is aggregate query?
+
+        aggregate query as the big picture tool in mysql. 
+instead of looking at every individual row in database, it gathers them
+together, performs a calculation, and return a single summary value.
+ 
+
