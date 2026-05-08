@@ -35,4 +35,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/foods/{id}',    [FoodController::class, 'update']);
     Route::delete('/foods/{id}', [FoodController::class, 'destroy']);
 
+    // new route 
+
 });
