@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\WorkoutController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FoodController;
 
 // ── Public Routes (no auth needed) ──
@@ -35,4 +36,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/foods/{id}',    [FoodController::class, 'update']);
     Route::delete('/foods/{id}', [FoodController::class, 'destroy']);
 
+    // Profile
+    Route::get('/profile',              [ProfileController::class, 'show']);
+    Route::put('/profile',              [ProfileController::class, 'update']);
+    Route::put('/profile/password',     [ProfileController::class, 'changePassword']);
+    Route::delete('/profile',           [ProfileController::class, 'destroy']);
 });

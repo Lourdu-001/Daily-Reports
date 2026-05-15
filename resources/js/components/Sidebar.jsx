@@ -1,11 +1,13 @@
 import { useState } from 'react';  // 👈 add useState
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 
 export default function Sidebar() {
     const { user, logout } = useAuth();
+    const { darkMode, toggleDarkMode } = useTheme();
     const navigate         = useNavigate();
-    const [isOpen, setIsOpen] = useState(false); // 👈 add this
+    const [isOpen, setIsOpen] = useState(false); 
 
     const handleLogout = async () => {
         await logout();
@@ -17,6 +19,7 @@ export default function Sidebar() {
         { path: '/tasks',     label: 'Tasks',     icon: '✅' },
         { path: '/workout',   label: 'Workout',   icon: '💪' },
         { path: '/food',      label: 'Food',      icon: '🍎' },
+        { path: '/profile',   label: 'Profile',   icon: '👤' },
     ];
 
     return (
@@ -92,6 +95,29 @@ export default function Sidebar() {
                         </NavLink>
                     ))}
                 </nav>
+
+                {/* ── Dark Mode Toggle ── */}
+                <div className="px-4 py-3 border-t border-gray-700">
+                    <button
+                        onClick={toggleDarkMode}
+                        className="w-full flex items-center justify-between px-4 py-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition"
+                    >
+                        <div className="flex items-center gap-3">
+                            <span>{darkMode ? '☀️' : '🌙'}</span>
+                            <span className="font-medium">
+                                {darkMode ? 'Light Mode' : 'Dark Mode'}
+                            </span>
+                        </div>
+                        {/* Toggle Switch */}
+                        <div className={`w-10 h-5 rounded-full transition-colors duration-300 ${
+                            darkMode ? 'bg-green-500' : 'bg-gray-600'
+                        }`}>
+                            <div className={`w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-300 ${
+                                darkMode ? 'translate-x-5' : 'translate-x-0'
+                            }`} />
+                        </div>
+                    </button>
+                </div>
 
                 {/* Logout */}
                 <div className="p-4 border-t border-gray-700">

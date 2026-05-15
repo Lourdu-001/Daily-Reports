@@ -139,8 +139,8 @@ export default function Food() {
             {/* Header */}
             <div className="flex items-center justify-between mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-gray-800">🍎 Food</h1>
-                    <p className="text-gray-500 mt-1">Track your daily meals and nutrition</p>
+                    <h1 className="text-3xl font-bold text-gray-800 dark:text-white">🍎 Food</h1>
+                    <p className="text-gray-500 dark:text-gray-400 mt-1">Track your daily meals and nutrition</p>
                 </div>
                 <button
                     onClick={handleAdd}
@@ -177,8 +177,8 @@ export default function Food() {
 
             {/* Add/Edit Form */}
             {showForm && (
-                <div className="bg-white rounded-2xl shadow p-6 mb-6">
-                    <h2 className="text-lg font-bold text-gray-800 mb-4">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow p-6 mb-6">
+                    <h2 className="text-lg font-bold text-gray-800 dark:text-white mb-4">
                         {editFood ? '✏️ Edit Meal' : '➕ Log a Meal'}
                     </h2>
 
@@ -194,7 +194,7 @@ export default function Food() {
                                     name="food_name"
                                     value={form.food_name}
                                     onChange={handleChange}
-                                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                    className="w-full dark:bg-gray-700 dark:text-white dark:border-gray-600 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                     placeholder="e.g. Chicken Rice"
                                     required
                                 />
@@ -208,7 +208,7 @@ export default function Food() {
                                     name="meal_type"
                                     value={form.meal_type}
                                     onChange={handleChange}
-                                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                    className="w-full border border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                 >
                                     <option value="breakfast">🌅 Breakfast</option>
                                     <option value="lunch">☀️ Lunch</option>
@@ -229,7 +229,7 @@ export default function Food() {
                                     name="calories"
                                     value={form.calories}
                                     onChange={handleChange}
-                                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                    className="w-full border border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                     placeholder="kcal"
                                     min="0"
                                 />
@@ -243,7 +243,7 @@ export default function Food() {
                                     name="protein"
                                     value={form.protein}
                                     onChange={handleChange}
-                                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                    className="w-full border border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                     placeholder="grams"
                                     min="0"
                                     step="0.1"
@@ -258,7 +258,7 @@ export default function Food() {
                                     name="carbs"
                                     value={form.carbs}
                                     onChange={handleChange}
-                                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                    className="w-full border border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                     placeholder="grams"
                                     min="0"
                                     step="0.1"
@@ -273,7 +273,7 @@ export default function Food() {
                                     name="fats"
                                     value={form.fats}
                                     onChange={handleChange}
-                                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                    className="w-full border border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                     placeholder="grams"
                                     min="0"
                                     step="0.1"
@@ -290,7 +290,7 @@ export default function Food() {
                                     name="notes"
                                     value={form.notes}
                                     onChange={handleChange}
-                                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                    className="w-full border border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                     placeholder="Any notes..."
                                     rows="2"
                                 />
@@ -304,7 +304,7 @@ export default function Food() {
                                     name="date"
                                     value={form.date}
                                     onChange={handleChange}
-                                    className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                    className="w-full border border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                     required
                                 />
                             </div>
@@ -332,13 +332,13 @@ export default function Food() {
 
             {/* Food List */}
             {loading ? (
-                <div className="text-center text-gray-500 py-10">
+                <div className="text-center text-gray-500 dark:text-gray-400 py-10">
                     Loading food logs...
                 </div>
             ) : foods.length === 0 ? (
-                <div className="bg-white rounded-2xl shadow p-10 text-center">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow p-10 text-center">
                     <p className="text-4xl mb-3">🍽️</p>
-                    <p className="text-gray-500">No meals logged yet! Add your first meal.</p>
+                    <p className="text-gray-500 dark:text-gray-400">No meals logged yet! Add your first meal.</p>
                 </div>
             ) : (
                 <div className="space-y-6">
@@ -347,7 +347,7 @@ export default function Food() {
                             <div key={mealType}>
 
                                 {/* Meal Type Header */}
-                                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                                <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
                                     {mealType === 'breakfast' && '🌅 Breakfast'}
                                     {mealType === 'lunch'     && '☀️ Lunch'}
                                     {mealType === 'dinner'    && '🌙 Dinner'}
@@ -357,19 +357,19 @@ export default function Food() {
                                 <div className="space-y-3">
                                     {items.map((food) => (
                                         <div key={food.id}
-                                            className="bg-white rounded-2xl shadow p-5 flex items-start justify-between gap-4">
+                                            className="bg-white dark:bg-gray-800 rounded-2xl shadow p-5 flex items-start justify-between gap-4">
 
                                             {/* Left */}
                                             <div className="flex-1">
                                                 <div className="flex items-center gap-2 mb-1">
-                                                    <h3 className="font-semibold text-gray-800">
+                                                    <h3 className="font-semibold text-gray-800 dark:text-white">
                                                         {food.food_name}
                                                     </h3>
                                                     {mealBadge(food.meal_type)}
                                                 </div>
 
                                                 {/* Macros Row */}
-                                                <div className="flex gap-4 text-sm text-gray-500 mt-2 flex-wrap">
+                                                <div className="flex gap-4 text-sm text-gray-500 dark:text-gray-400 mt-2 flex-wrap">
                                                     {food.calories && (
                                                         <span>🔥 {food.calories} kcal</span>
                                                     )}
@@ -385,12 +385,12 @@ export default function Food() {
                                                 </div>
 
                                                 {food.notes && (
-                                                    <p className="text-gray-400 text-sm mt-2">
+                                                    <p className="text-gray-400 dark:text-gray-500 text-sm mt-2">
                                                         📝 {food.notes}
                                                     </p>
                                                 )}
 
-                                                <p className="text-gray-400 text-xs mt-1">
+                                                <p className="text-gray-400 dark:text-gray-500 text-xs mt-1">
                                                     📅 {food.date?.slice(0, 10)}
                                                 </p>
                                             </div>

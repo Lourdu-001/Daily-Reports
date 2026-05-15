@@ -70,10 +70,10 @@ export default function Dashboard() {
         <div>
             {/* Header */}
             <div className="mb-8">
-                <h1 className="text-3xl font-bold text-gray-800">
+                <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
                     Good day, {user?.name}! 👋
                 </h1>
-                <p className="text-gray-500 mt-1">
+                <p className="text-gray-500 dark:text-white mt-1">
                     Here's your daily summary for {new Date().toDateString()}
                 </p>
             </div>
@@ -82,13 +82,13 @@ export default function Dashboard() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                 {stats.map((stat) => (
                     <div key={stat.label}
-                        className="bg-white rounded-2xl shadow p-6 flex items-center gap-4">
+                        className="bg-white dark:bg-gray-800 rounded-2xl shadow p-6 flex items-center gap-4">
                         <div className={`${stat.color} text-white text-2xl w-14 h-14 rounded-xl flex items-center justify-center`}>
                             {stat.icon}
                         </div>
                         <div>
-                            <p className="text-gray-500 text-sm">{stat.label}</p>
-                            <p className="text-2xl font-bold text-gray-800">{stat.value}</p>
+                            <p className="text-gray-500 dark:text-gray-400 text-sm">{stat.label}</p>
+                            <p className="text-2xl font-bold text-gray-800 dark:text-white">{stat.value}</p>
                         </div>
                     </div>
                 ))}
@@ -98,10 +98,10 @@ export default function Dashboard() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
                 {/* Tasks Summary */}
-                <div className="bg-white rounded-2xl shadow p-6">
-                    <h2 className="text-lg font-bold text-gray-800 mb-4">✅ Today's Tasks</h2>
+                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow p-6">
+                    <h2 className="text-lg font-bold text-gray-800d dark:text-white mb-4">✅ Today's Tasks</h2>
                     {todayTasks.length === 0 ? (
-                        <p className="text-gray-400 text-sm">No tasks for today.</p>
+                        <p className="text-gray-400 dark:text-gray-500 text-sm">No tasks for today.</p>
                     ) : (
                         <ul className="space-y-2">
                             {todayTasks.map(task => (
@@ -109,8 +109,8 @@ export default function Dashboard() {
                                     className="flex items-center gap-2 text-sm">
                                     <span>{task.status === 'completed' ? '✅' : '⬜'}</span>
                                     <span className={task.status === 'completed'
-                                        ? 'line-through text-gray-400'
-                                        : 'text-gray-700'
+                                        ? 'line-through text-gray-400 dark:text-gray-300'
+                                        : 'text-gray-700 dark:text-gray-300'
                                     }>
                                         {task.title}
                                     </span>
@@ -121,17 +121,17 @@ export default function Dashboard() {
                 </div>
 
                 {/* Workout Summary */}
-                <div className="bg-white rounded-2xl shadow p-6">
-                    <h2 className="text-lg font-bold text-gray-800 mb-4">💪 Today's Workouts</h2>
+                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow p-6">
+                    <h2 className="text-lg font-bold text-gray-800 dark:text-white mb-4">💪 Today's Workouts</h2>
                     {todayWorkouts.length === 0 ? (
-                        <p className="text-gray-400 text-sm">No workouts logged today.</p>
+                        <p className="text-gray-400 dark:text-gray-500 text-sm">No workouts logged today.</p>
                     ) : (
                         <ul className="space-y-2">
                             {todayWorkouts.map(workout => (
                                 <li key={workout.id}
                                     className="flex items-center gap-2 text-sm">
                                     <span>🏋️</span>
-                                    <span className="text-gray-700">
+                                    <span className="text-gray-700 dark:text-gray-300">
                                         {workout.exercise_name}
                                         {workout.sets && ` — ${workout.sets} sets`}
                                         {workout.reps && ` x ${workout.reps} reps`}
@@ -143,20 +143,20 @@ export default function Dashboard() {
                 </div>
 
                 {/* Food Summary */}
-                <div className="bg-white rounded-2xl shadow p-6">
-                    <h2 className="text-lg font-bold text-gray-800 mb-4">🍎 Today's Meals</h2>
+                <div className="bg-white dark:bg-gray-800 rounded-2xl shadow p-6">
+                    <h2 className="text-lg font-bold text-gray-800 dark:text-white mb-4">🍎 Today's Meals</h2>
                     {todayFoods.length === 0 ? (
-                        <p className="text-gray-400 text-sm">No meals logged today.</p>
+                        <p className="text-gray-400 dark:text-gray-500 text-sm">No meals logged today.</p>
                     ) : (
                         <ul className="space-y-2">
                             {todayFoods.map(food => (
                                 <li key={food.id}
                                     className="flex items-center gap-2 text-sm">
                                     <span>🍽️</span>
-                                    <span className="text-gray-700">
+                                    <span className="text-gray-700 dark:text-gray-300">
                                         {food.food_name}
                                         {food.calories && (
-                                            <span className="text-gray-400">
+                                            <span className="text-gray-400 dark:text-gray-300">
                                                 {' '}— {food.calories} kcal
                                             </span>
                                         )}
