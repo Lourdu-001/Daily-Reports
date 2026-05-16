@@ -57,6 +57,7 @@ function getIndianFoodNutrition(query) {
         'egg':            { cal: 78,  pro: 6.0,  carb: 0.6,  fat: 5.0,  unit: 'piece' },
         'banana':         { cal: 89,  pro: 1.1,  carb: 23.0, fat: 0.3,  unit: 'piece' },
         'apple':          { cal: 52,  pro: 0.3,  carb: 14.0, fat: 0.2,  unit: '100g'  },
+        'watermelon':     { cal: 30,  pro: 0.6,  carb: 7.6, fat: 0.15,  unit: '100g'  },
         'chicken':        { cal: 165, pro: 31.0, carb: 0.0,  fat: 3.6,  unit: '100g'  },
         'mutton':         { cal: 294, pro: 25.6, carb: 0.0,  fat: 21.0, unit: '100g'  },
         'fish':           { cal: 128, pro: 20.0, carb: 0.0,  fat: 5.0,  unit: '100g'  },
