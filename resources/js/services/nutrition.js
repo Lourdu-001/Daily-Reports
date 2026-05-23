@@ -91,6 +91,8 @@ function getIndianFoodNutrition(query) {
             multiplier = quantity / 100;             // biryani 300g → 3
         } else if (unit === 'kg') {
             multiplier = (quantity * 1000) / 100;    // biryani 0.3kg → 3
+        } else if (unit === 'cup') {
+            multiplier = quantity;
         } else {
             multiplier = quantity / 100;             // biryani 300 → treat as grams
         }

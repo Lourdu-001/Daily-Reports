@@ -41,7 +41,7 @@ function TaskModal({ show, onClose, onSubmit, form, onChange, editTask }) {
                                 name="title"
                                 value={form.title}
                                 onChange={onChange}
-                                className="w-full border border-gray-300 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                className="w-full border border-gray-300 dark:bg-gray-600 dark:text-white dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                 placeholder="Task title..."
                                 required
                             />
@@ -55,7 +55,7 @@ function TaskModal({ show, onClose, onSubmit, form, onChange, editTask }) {
                                 name="description"
                                 value={form.description}
                                 onChange={onChange}
-                                className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                className="w-full border border-gray-300 dark:bg-gray-600 dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                 placeholder="Task description..."
                                 rows="3"
                             />
@@ -86,7 +86,7 @@ function TaskModal({ show, onClose, onSubmit, form, onChange, editTask }) {
                                     name="date"
                                     value={form.date}
                                     onChange={onChange}
-                                    className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+                                    className="w-full border border-gray-300 dark:border-gray-600 dark:text-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                     required
                                 />
                             </div>
@@ -103,7 +103,7 @@ function TaskModal({ show, onClose, onSubmit, form, onChange, editTask }) {
                             <button
                                 type="button"
                                 onClick={onClose}
-                                className="flex-1 bg-gray-100 dark:bg-gray-950 text-gray-700 py-2 rounded-lg font-semibold hover:bg-gray-200 transition"
+                                className="flex-1 bg-gray-100 text-gray-700 py-2 rounded-lg font-semibold hover:bg-gray-200 transition"
                             >
                                 Cancel
                             </button>

@@ -13,7 +13,6 @@ import Tasks     from './pages/Tasks';
 import Workout   from './pages/Workout';
 import Food      from './pages/Food';
 import Profile   from './pages/Profile';
-import Notes     from './pages/Notes';
 
 import './bootstrap';
 
@@ -52,12 +51,6 @@ function App() {
                         <Route path="/profile" element={
                             <ProtectedRoute>
                                 <Layout><Profile /></Layout>
-                            </ProtectedRoute>
-                        }/>
-
-                        <Route path="/notes" element={
-                            <ProtectedRoute>
-                                <Layout><Notes /></Layout>
                             </ProtectedRoute>
                         }/>
 

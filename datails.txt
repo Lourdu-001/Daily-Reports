@@ -1,0 +1,260 @@
+route + controller + resource + model + database + resource + json Response.
+
+route : 
+-------
+
+Route::get('/', () => {
+    return "/welcome";
+})
+
+Route::get('/task', [TaskController::class, 'index']);
+
+✅ CRUD Operations (VERY IMPORTANT)
+
+Be ready to explain:
+
+store()
+index()
+show()
+update()
+destroy()
+
+Especially:
+
+$request->validate()
+
+and
+
+Task::create()
+Task::findOrFail()
+
+Must know:
+
+Task::all()
+Task::where()
+Task::latest()
+Task::with()
+
+Soft delete:
+
+withTrashed()
+onlyTrashed()
+restore()
+forceDelete()
+
+You already practiced this 🔥
+
+---------------------------------------------------------------
+
+Router:
+-------
+"The Router in Laravel is a core system that maps incoming HTTP requests to specific code execution points (like Controllers or Closures).
+
+We primarily manage them in two places: web.php for web browser traffic (which handles sessions and outputs HTML templates), and api.php for stateless API traffic (which handles token authentication and outputs raw data like JSON)."
+
+Route::get("/", [TaskController, "index"]);
+
+Route::get("/about", () => {
+    return "/about";
+})
+
+“Why api.php is stateless?”
+
+Answer:
+
+Because APIs usually do not maintain sessions between requests. Each request contains its own authentication information, commonly through tokens.
+
+🚀 Another Possible Follow-up Question
+“Difference between Route::get and Route::resource?”
+
+You should answer:
+
+Route::get('/tasks', [TaskController::class, 'index']);
+
+Handles a single route.
+
+Route::resource('tasks', TaskController::class);
+
+Automatically creates CRUD routes:
+
+index
+store
+show
+update
+destroy
+
+controller:
+---------
+controller is a coordinator which help to handle the request and response lifecycle. while it can handle validation, the main job of controller is handle the validated data and interact with the business, model logics and return a response
+
+“Why shouldn’t we put all logic inside controller?”
+
+Answer:
+
+Because controllers should remain lightweight and focused on request handling. Complex business logic is usually moved to services, repositories, or model layers for better maintainability and scalability.
+
+public function store(StoreTaskRequest $request) {
+    $validated = $request->validated();
+
+    $task = $Task::create($validated);
+
+    return response()->json([
+        'success' => true,
+        'data' => $task
+    ], 201);
+}
+
+
+Model:
+-------
+A model in Laravel represents a database table and acts as the application's data layer using Eloquent ORM.
+
+It is responsible for interacting with the database, handling CRUD operations, defining relationships between tables, and managing business-related data logic.
+
+Models help developers work with database records using object-oriented syntax instead of writing raw SQL queries.
+
+example: find()
+findOrFail()
+where()
+delete()
+latest()
+paginate()
+
+“What is fillable?”
+
+Be ready.
+
+Example:
+
+protected $fillable = [
+   'title',
+   'description'
+];
+
+Answer:
+
+$fillable protects against mass assignment vulnerabilities by defining which fields are allowed for bulk insertion or updates.
+
+
+Now we enter one of the MOST ASKED topics.
+
+You must know:
+
+One-to-Many
+
+Example:
+
+One User → Many Posts
+
+user model:
+----------
+
+public function posts() {
+    return $this->hasMany(Post::class);
+}
+
+Middleware acts as a filtering layer between the incoming HTTP request and the application controllers.
+
+It is used to inspect, validate, or block requests before they reach the controller.
+
+Common use cases include:
+
+authentication
+authorization
+logging
+rate limiting
+CORS handling
+
+Middleware helps secure and control application flow.
+
+“Can middleware run after response too?”
+
+Answer:
+
+Yes. Middleware can process both before and after the request lifecycle using the $next($request) flow.
+
+Example:
+
+public function handle($request, closure $next) {
+    // before 
+    $response = $next($request);
+
+    // after 
+    return $response;
+}
+
+Route::middleware("auth")->group(() => {
+    Route::get("dashboard", function () {
+        return view('dashboard');
+    })
+})
+
+crud operations:
+--------------
+1. Read All - GET method -  index()      - Tasks::all(); or Tasks::where("user_id")->get(); or Task::latest()->get();
+2. Read One - GET method -  show($id)    - Tasks::findOrFail($id);
+3. Create   - POST method -  store($id)   - Tasks::create($request->validated());
+4. Update   - PUT/PATCH  -  update($id)  - $task->update($request->all());
+5. Delete   - DELETE     -  destroy($id) - $task->delete();
+
+“Why use resource controllers?”
+
+Answer:
+
+Resource controllers provide a standardized RESTful structure for CRUD operations, making the application more organized and maintainable.
+
+“What is route model binding?”
+
+Example:
+
+public function show(Task $task)
+{
+    return $task;
+}
+
+Laravel automatically fetches model by ID.
+
+
+Dependency Injection:
+--------------------
+Dependency Injection is a design pattern where a class receives its dependencies from outside instead of creating them internally.
+
+This improves:
+
+loose coupling
+testability
+maintainability
+
+In Laravel, Dependency Injection is managed automatically by the Service Container, which resolves and injects required class dependencies.
+
+
+
+************************ REACT *****************************
+-----------------------------------------------------------
+
+useState:
+--------
+     useState is a React Hook used to manage state inside funcational component.
+     It allows components store and update dynamic data without refreshing page.
+     when the state updates, the component renders automatically.
+
+     const [ count, setCount ] = useState();
+
+     "does useState update immediately?"
+
+     No. state updates are asynchronous in React.
+
+useEffect:
+----------
+    useEffect is a React Hooks helps to handle side effect inside the functional component.
+
+    common use cases:
+    API Calls.
+    event listeners
+    timers
+    Dom updates.
+
+    "the effect runs after component render".
+
+    
+
