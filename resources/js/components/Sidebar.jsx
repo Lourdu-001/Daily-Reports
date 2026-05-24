@@ -19,7 +19,7 @@ export default function Sidebar() {
         { path: '/tasks',     label: 'Tasks',     icon: '✅' },
         { path: '/workout',   label: 'Workout',   icon: '💪' },
         { path: '/food',      label: 'Food',      icon: '🍎' },
-        { path: '/notes',      label: 'Notes',     icon: '✅' },
+        // { path: '/notes',      label: 'Notes',     icon: '✅' },
         { path: '/profile',   label: 'Profile',   icon: '👤' },
     ];
 
