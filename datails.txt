@@ -60,6 +60,14 @@ Route::get("/about", () => {
 
 “Why api.php is stateless?”
 
+web.php
+Route::get("/welcom", () => {
+    return view("welcome");
+})
+
+api.php
+Route::get("/", [TaskController, "index"]);
+
 Answer:
 
 Because APIs usually do not maintain sessions between requests. Each request contains its own authentication information, commonly through tokens.
@@ -96,7 +104,7 @@ Because controllers should remain lightweight and focused on request handling. C
 public function store(StoreTaskRequest $request) {
     $validated = $request->validated();
 
-    $task = $Task::create($validated);
+    $task = Task::create($validated);
 
     return response()->json([
         'success' => true,
@@ -256,5 +264,157 @@ useEffect:
 
     "the effect runs after component render".
 
-    
+session:
+  
+   $_SESSION['color']='red';
+   $_SESSION['fruite']='apple';
+
+
+
+Docker:
+-------
+ Docker helps package applications with dependencies into containers for consistent deployment.
+
+CI/CD:
+-----
+ which automates testing and deployment pipelines.
+
+MicroServices:
+--------------
+ MicroServices splits applications into smaller independent services communicating through apis.
+
+Eloquent ORM:
+------------
+
+object relational mapping:
+-------------------------
+instead of writing raw sql queries manually:
+
+sql:
+SELECT * FROM tasks;
+
+laravel allows you to interact with the database tables using php models:
+
+Tasks::all();
+
+That is Eloquent Model;
+
+Eloquent ORM is Laravel’s built-in Object Relational Mapper that allows developers to interact with database tables using PHP models instead of writing raw SQL queries.
+
+It provides an object-oriented way to perform CRUD operations, relationships, query building, pagination, soft deletes, and more.
+
+Each database row becomes a PHP object.
+
+✅ all()
+
+Gets all records.
+
+Task::all();
+
+SQL equivalent:
+
+SELECT * FROM tasks;
+
+✅ find()
+
+Gets record by primary key.
+
+Task::find(1);
+✅ findOrFail()
+
+If record not found → throws 404 exception.
+
+Task::findOrFail(1);
+
+🔥 HIGHLY ASKED.
+
+✅ where()
+
+Filtering records.
+
+Task::where('status', 'completed')->get();
+
+SQL:
+
+SELECT * FROM tasks WHERE status='completed';
+
+✅ first()
+
+Gets first matching record.
+
+Task::where('status', 'completed')->first();
+
+Returns:
+
+single object
+not collection
+
+✅ get()
+
+Executes query and returns collection.
+
+Task::where('status', 'completed')->get();
+
+Returns:
+
+multiple records collection
+
+🚨 VERY IMPORTANT INTERVIEW QUESTION
+Difference between first() and get()
+
+get()
+
+Returns collection (multiple records)
+
+first()
+
+Returns single object
+
+🔥 This question appears VERY often.
+
+✅ latest()
+
+Sort descending by created_at.
+
+Task::latest()->get();
+
+Equivalent:
+
+ORDER BY created_at DESC
+✅ paginate()
+
+Used for pagination.
+
+Task::paginate(5);
+
+Returns:
+
+paginated response
+links
+metadata
+
+You already saw this in your API response.
+
+✅ create()
+
+Insert new record.
+
+Task::create([
+   'title' => 'Learn Laravel'
+]);
+
+Requires:
+
+protected $fillable = ['title'];
+
+What is soft delete?
+-------------------
+
+Best answer:
+
+Soft delete does not permanently remove records from database. Instead, Laravel sets a deleted_at timestamp, allowing records to be restored later.
+
+🔥 Excellent answer.
+
+
 

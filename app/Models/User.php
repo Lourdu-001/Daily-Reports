@@ -15,12 +15,25 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'profile_picture',
     ];
 
     protected $hidden = [
         'password',
         'remember_token',
     ];
+
+    // ── Get full URL for profile picture ──
+    public function getProfilePictureUrlAttribute()
+    {
+        if($this->profile_picture) {
+            return asset('storage/' . $this->profile_picture);
+        }
+
+        return null;
+    }
+
+    protected $appends = ['profile_picture_url'];
 
     // Relationships
     public function tasks()

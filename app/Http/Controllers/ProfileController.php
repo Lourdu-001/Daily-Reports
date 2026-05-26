@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
@@ -39,6 +40,32 @@ class ProfileController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Profile updated successfully!',
+            'user'    => $user,
+        ]);
+    }
+
+    // ── Upload Profile Picture ──
+    public function uploadPicture(Request $request)
+    {
+        $request->validate([
+            'profile_picture' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
+
+        $user = $request->user();
+
+        // Delete old picture if exists
+        if ($user->profile_picture) {
+            Storage::disk('public')->delete($user->profile_picture);
+        }
+
+        // Store new picture
+        $path = $request->file('profile_picture')->store('profile_pictures', 'public');
+
+        $user->update(['profile_picture' => $path]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Profile picture updated!',
             'user'    => $user,
         ]);
     }
