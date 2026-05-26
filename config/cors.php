@@ -9,7 +9,7 @@ return [
     'allowed_origins' => [
         'http://127.0.0.1:8000',
         'http://localhost:5173',
-        'https://splendor-freebase-tartness.ngrok-free.dev',
+        'https://daily-reports-production.up.railway.app',
     ],
 
     'allowed_origins_patterns' => [],

@@ -1,7 +1,14 @@
 import axios from 'axios';
 
+const isProduction = window.location.hostname !== '127.0.0.1'
+                  && window.location.hostname !== 'localhost';
+
+const BASE_URL = isProduction
+    ? 'https://daily-reports-production.up.railway.app/api'
+    : 'http://127.0.0.1:8000/api';
+
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api',
+    baseURL: BASE_URL,
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
