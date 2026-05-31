@@ -112,7 +112,6 @@ public function store(StoreTaskRequest $request) {
     ], 201);
 }
 
-
 Model:
 -------
 A model in Laravel represents a database table and acts as the application's data layer using Eloquent ORM.
