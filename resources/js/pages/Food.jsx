@@ -2,9 +2,124 @@ import { useState, useEffect } from 'react';
 import api from '../services/api';
 import { getNutrition } from '../services/nutrition';
 
+// resources/js/services/nutrition.js
+import { indianFoodDatabase } from '../config/nutritionData';
+
 // ── Food Modal Component ──
 function FoodModal({ show, onClose, onSubmit, form, onChange, onAutoFill, searching, editFood, error }) {
+    const [suggestions, setSuggestions] = useState([]);
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    // Add this inside FoodModal — full Indian + common foods list
+    const foodSuggestions = [
+        // South Indian
+        'Idly', 'Idli', 'Dosa', 'Masala Dosa', 'Rava Dosa',
+        'Sambar', 'Vada', 'Medu Vada', 'Upma', 'Pongal',
+        'Uttapam', 'Appam', 'Puttu', 'Pesarattu', 'Adai',
+        'Curd Rice', 'Lemon Rice', 'Tamarind Rice', 'Coconut Rice',
+        'Rasam', 'Aviyal', 'Kootu', 'Poriyal', 'Keerai',
+
+        // Rice & Biryani
+        'Rice', 'Biryani', 'Mutton Biryani', 'Chicken Biryani',
+        'Veg Biryani', 'Egg Biryani', 'Prawn Biryani',
+        'Fried Rice', 'Egg Fried Rice', 'Chicken Fried Rice',
+        'Jeera Rice', 'Ghee Rice', 'Pulao',
+
+        // Breads
+        'Roti', 'Chapati', 'Paratha', 'Aloo Paratha',
+        'Naan', 'Puri', 'Bhatura', 'Poori',
+
+        // Curries & Dals
+        'Dal', 'Dal Tadka', 'Dal Makhani', 'Rajma',
+        'Chole', 'Paneer Butter Masala', 'Palak Paneer',
+        'Butter Chicken', 'Chicken Curry', 'Chicken Gravy',
+        'Mutton Curry', 'Mutton Gravy', 'Fish Curry',
+        'Prawn Curry', 'Egg Curry', 'Mixed Veg Curry',
+        'Korma', 'Vindaloo', 'Kadai Chicken',
+
+        // Snacks
+        'Samosa', 'Pakora', 'Bhaji', 'Vada Pav',
+        'Pav Bhaji', 'Poha', 'Chaat', 'Bhel Puri',
+        'Pani Puri', 'Sev Puri', 'Dhokla', 'Kachori',
+        'Spring Roll', 'Manchurian', 'Gobi Manchurian',
+
+        // Non Veg Snacks
+        'Chicken 65', 'Chicken Tikka', 'Tandoori Chicken',
+        'Fish Fry', 'Prawn Fry', 'Mutton Kebab',
+        'Seekh Kebab', 'Shawarma', 'Chicken Roll',
+
+        // Breakfast
+        'Omelette', 'Boiled Egg', 'Scrambled Eggs',
+        'Bread Toast', 'Sandwich', 'Poha', 'Upma',
+        'Cornflakes', 'Oats', 'Muesli',
+
+        // Drinks
+        'Chai', 'Coffee', 'Milk', 'Lassi', 'Buttermilk',
+        'Mango Lassi', 'Fruit Juice', 'Coconut Water',
+        'Lemonade', 'Masala Chai', 'Green Tea',
+
+        // Sweets & Desserts
+        'Gulab Jamun', 'Rasgulla', 'Kheer', 'Halwa',
+        'Ladoo', 'Barfi', 'Jalebi', 'Payasam',
+        'Ice Cream', 'Kulfi',
+
+        // Fruits
+        'Apple', 'Banana', 'Mango', 'Orange', 'Grapes',
+        'Watermelon', 'Papaya', 'Pomegranate', 'Guava',
+        'Pineapple',
+
+        // Common
+        'Egg', 'Chicken', 'Mutton', 'Fish', 'Paneer',
+        'Curd', 'Butter', 'Ghee', 'Cheese',
+        'White Rice', 'Brown Rice',
+    ];
+
+    // Replace the food_name input onChange handler
+    const handleFoodNameChange = (e) => {
+        const value = e.target.value;
+        onChange(e); // call original onChange
+
+        let newArray = [];
+
+        for(const[key, value] of Object.entries(indianFoodDatabase)) {
+            newArray.push(key);
+        }
+
+        // Filter suggestions
+        if (value.trim().length > 0) {
+            const filtered = newArray.filter(food =>
+                food.toLowerCase().startsWith(value.toLowerCase())
+            );
+            setSuggestions(filtered.slice(0, 6)); // show max 6
+            setShowDropdown(filtered.length > 0);
+        } else {
+            setSuggestions([]);
+            setShowDropdown(false);
+        }
+    };
+
+    // Handle suggestion click
+    const handleSuggestionClick = (suggestion) => {
+        // Create a fake event to update form
+        const fakeEvent = {
+            target: {
+                name: 'food_name',
+                value: suggestion,
+            }
+        };
+        onChange(fakeEvent);
+        setSuggestions([]);
+        setShowDropdown(false);
+    };
+
     if (!show) return null;
+
+    // useEffect(() => {
+    //     console.log(indianFoodDatabase);
+    //     for(const[key, value] of Object.entries(indianFoodDatabase)) {
+    //         console.log(`${key}` +  " " + `${value}`);
+    //     }
+    // }, [])
 
     return (
         <>
@@ -33,12 +148,20 @@ function FoodModal({ show, onClose, onSubmit, form, onChange, onAutoFill, search
                         {/* Food Name + Auto Fill */}
                         <div>
                             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Food Name</label>
-                            <div className="flex gap-2">
+                            <div className="flex gap-2 relative">
                                 <input
                                     type="text"
                                     name="food_name"
                                     value={form.food_name}
-                                    onChange={onChange}
+                                    onChange={handleFoodNameChange}
+                                    autoComplete='off'
+                                    onBlur={() => {
+                                        // Small delay so click on suggestion registers
+                                        setTimeout(() => setShowDropdown(false), 150);
+                                    }}
+                                    onFocus={() => {
+                                        if (suggestions.length > 0) setShowDropdown(true);
+                                    }}
                                     className="flex-1 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
                                     placeholder="e.g. idly 2, mutton biryani 300g"
                                     required
@@ -51,6 +174,25 @@ function FoodModal({ show, onClose, onSubmit, form, onChange, onAutoFill, search
                                 >
                                     {searching ? '⏳...' : '✨ Auto Fill'}
                                 </button>
+                                {/* ── Dropdown ── */}
+                                {showDropdown && suggestions.length > 0 && (
+                                    <div className="absolute top-full left-0 right-0 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg z-50 mt-1 overflow-hidden">
+                                        {suggestions.map((suggestion, index) => (
+                                            <button
+                                                key={index}
+                                                type="button"
+                                                onMouseDown={() => handleSuggestionClick(suggestion)}
+                                                className="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-green-50 dark:hover:bg-green-900/30 hover:text-green-700 dark:hover:text-green-400 transition flex items-center gap-2 border-b border-gray-100 dark:border-gray-600 last:border-0"
+                                            >
+                                                <span>🍽️</span>
+                                                <span>{suggestion}</span>
+                                            </button>
+                                        ))}
+                                        <div className="px-4 py-1.5 text-xs text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-gray-800">
+                                            💡 Add quantity after selecting e.g. "Idly 2"
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                             <p className="text-xs text-gray-400 mt-1">💡 Type food + quantity then click Auto Fill!</p>
                         </div>

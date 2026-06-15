@@ -1,3 +1,5 @@
+import { indianFoodDatabase } from '../config/nutritionData';
+
 export async function getNutrition(foodQuery) {
 
     // ✅ FIX 1: Try Indian food database FIRST, not OpenFoodFacts
@@ -18,58 +20,58 @@ function getIndianFoodNutrition(query) {
         unit     = quantityMatch[2] || '';
     }
 
-    const indianFoods = {
-        'idly':           { cal: 78,  pro: 2.0,  carb: 15.0, fat: 0.5,  unit: 'piece' },
-        'idli':           { cal: 78,  pro: 2.0,  carb: 15.0, fat: 0.5,  unit: 'piece' },
-        'dosa':           { cal: 168, pro: 3.5,  carb: 30.0, fat: 4.5,  unit: 'piece' },
-        'masala dosa':    { cal: 210, pro: 4.5,  carb: 35.0, fat: 6.0,  unit: 'piece' },
-        'sambar':         { cal: 85,  pro: 4.0,  carb: 12.0, fat: 2.0,  unit: '100g'  },
-        'vada':           { cal: 145, pro: 5.0,  carb: 18.0, fat: 7.0,  unit: 'piece' },
-        'medu vada':      { cal: 145, pro: 5.0,  carb: 18.0, fat: 7.0,  unit: 'piece' },
-        'upma':           { cal: 170, pro: 4.0,  carb: 28.0, fat: 5.0,  unit: '100g'  },
-        'pongal':         { cal: 180, pro: 5.0,  carb: 30.0, fat: 5.0,  unit: '100g'  },
-        'cooked rice':    { cal: 130, pro: 2.4,  carb: 28.0, fat: 0.3,  unit: '100g'  },
-        'biryani':        { cal: 180, pro: 8.0,  carb: 25.0, fat: 6.0,  unit: '100g'  },
-        'mutton biryani': { cal: 220, pro: 12.0, carb: 25.0, fat: 9.0,  unit: '100g'  },
-        'chicken biryani':{ cal: 195, pro: 13.0, carb: 25.0, fat: 6.0,  unit: '100g'  },
-        'fried rice':     { cal: 160, pro: 4.0,  carb: 28.0, fat: 4.0,  unit: '100g'  },
-        'roti':           { cal: 104, pro: 3.5,  carb: 20.0, fat: 1.5,  unit: 'piece' },
-        'chapati':        { cal: 104, pro: 3.5,  carb: 20.0, fat: 1.5,  unit: 'piece' },
-        'paratha':        { cal: 180, pro: 4.0,  carb: 28.0, fat: 6.0,  unit: 'piece' },
-        'naan':           { cal: 262, pro: 8.7,  carb: 45.0, fat: 5.1,  unit: 'piece' },
-        'ragi':           { cal: 336, pro: 7.3,  carb: 72.0, fat: 0.37,  unit: '100g'  },
-        'semiya':         { cal: 350, pro: 8.7,  carb: 75.0, fat: 0.4,  unit: '100g' },
-        'puri':           { cal: 150, pro: 3.0,  carb: 22.0, fat: 6.0,  unit: 'piece' },
-        'dal':            { cal: 115, pro: 7.0,  carb: 18.0, fat: 1.5,  unit: '100g'  },
-        'dal tadka':      { cal: 130, pro: 7.5,  carb: 18.0, fat: 3.0,  unit: '100g'  },
-        'rajma':          { cal: 143, pro: 8.7,  carb: 22.0, fat: 2.0,  unit: '100g'  },
-        'chole':          { cal: 164, pro: 8.9,  carb: 27.0, fat: 2.6,  unit: '100g'  },
-        'paneer':         { cal: 265, pro: 18.3, carb: 1.2,  fat: 20.8, unit: '100g'  },
-        'butter chicken': { cal: 165, pro: 15.0, carb: 8.0,  fat: 8.0,  unit: '100g'  },
-        'chicken curry':  { cal: 155, pro: 15.0, carb: 5.0,  fat: 8.0,  unit: '100g'  },
-        'mutton curry':   { cal: 180, pro: 16.0, carb: 4.0,  fat: 11.0, unit: '100g'  },
-        'fish curry':     { cal: 140, pro: 18.0, carb: 4.0,  fat: 6.0,  unit: '100g'  },
-        'samosa':         { cal: 262, pro: 5.0,  carb: 30.0, fat: 14.0, unit: 'piece' },
-        'pakora':         { cal: 160, pro: 4.0,  carb: 18.0, fat: 8.0,  unit: 'piece' },
-        'poha':           { cal: 158, pro: 3.5,  carb: 30.0, fat: 3.0,  unit: '100g'  },
-        'chai':           { cal: 45,  pro: 1.5,  carb: 6.0,  fat: 1.5,  unit: 'cup'   },
-        'lassi':          { cal: 150, pro: 5.0,  carb: 18.0, fat: 6.0,  unit: 'cup'   },
-        'mint lemon':     { cal: 40,  pro: 0.02, carb: 9.77, fat: 0.01, unit: '100ml' },
-        'milk':           { cal: 61,  pro: 3.2,  carb: 4.8,  fat: 3.3,  unit: '100ml' },
-        'egg':            { cal: 78,  pro: 6.0,  carb: 0.6,  fat: 5.0,  unit: 'piece' },
-        'banana':         { cal: 89,  pro: 1.1,  carb: 23.0, fat: 0.3,  unit: 'piece' },
-        'apple':          { cal: 52,  pro: 0.3,  carb: 14.0, fat: 0.2,  unit: '100g'  },
-        'watermelon':     { cal: 30,  pro: 0.6,  carb: 7.6, fat: 0.15,  unit: '100g'  },
-        'chicken':        { cal: 165, pro: 31.0, carb: 0.0,  fat: 3.6,  unit: '100g'  },
-        'mutton':         { cal: 294, pro: 25.6, carb: 0.0,  fat: 21.0, unit: '100g'  },
-        'fish':           { cal: 128, pro: 20.0, carb: 0.0,  fat: 5.0,  unit: '100g'  },
-    };
+    // const indianFoodDatabase = {
+    //     'idly':           { cal: 78,  pro: 2.0,  carb: 15.0, fat: 0.5,  unit: 'piece' },
+    //     'idli':           { cal: 78,  pro: 2.0,  carb: 15.0, fat: 0.5,  unit: 'piece' },
+    //     'dosa':           { cal: 168, pro: 3.5,  carb: 30.0, fat: 4.5,  unit: 'piece' },
+    //     'masala dosa':    { cal: 210, pro: 4.5,  carb: 35.0, fat: 6.0,  unit: 'piece' },
+    //     'sambar':         { cal: 85,  pro: 4.0,  carb: 12.0, fat: 2.0,  unit: '100g'  },
+    //     'vada':           { cal: 145, pro: 5.0,  carb: 18.0, fat: 7.0,  unit: 'piece' },
+    //     'medu vada':      { cal: 145, pro: 5.0,  carb: 18.0, fat: 7.0,  unit: 'piece' },
+    //     'upma':           { cal: 170, pro: 4.0,  carb: 28.0, fat: 5.0,  unit: '100g'  },
+    //     'pongal':         { cal: 180, pro: 5.0,  carb: 30.0, fat: 5.0,  unit: '100g'  },
+    //     'cooked rice':    { cal: 130, pro: 2.4,  carb: 28.0, fat: 0.3,  unit: '100g'  },
+    //     'biryani':        { cal: 180, pro: 8.0,  carb: 25.0, fat: 6.0,  unit: '100g'  },
+    //     'mutton biryani': { cal: 220, pro: 12.0, carb: 25.0, fat: 9.0,  unit: '100g'  },
+    //     'chicken biryani':{ cal: 195, pro: 13.0, carb: 25.0, fat: 6.0,  unit: '100g'  },
+    //     'fried rice':     { cal: 160, pro: 4.0,  carb: 28.0, fat: 4.0,  unit: '100g'  },
+    //     'roti':           { cal: 104, pro: 3.5,  carb: 20.0, fat: 1.5,  unit: 'piece' },
+    //     'chapati':        { cal: 104, pro: 3.5,  carb: 20.0, fat: 1.5,  unit: 'piece' },
+    //     'paratha':        { cal: 180, pro: 4.0,  carb: 28.0, fat: 6.0,  unit: 'piece' },
+    //     'naan':           { cal: 262, pro: 8.7,  carb: 45.0, fat: 5.1,  unit: 'piece' },
+    //     'ragi':           { cal: 336, pro: 7.3,  carb: 72.0, fat: 0.37,  unit: '100g'  },
+    //     'semiya':         { cal: 350, pro: 8.7,  carb: 75.0, fat: 0.4,  unit: '100g' },
+    //     'puri':           { cal: 150, pro: 3.0,  carb: 22.0, fat: 6.0,  unit: 'piece' },
+    //     'dal':            { cal: 115, pro: 7.0,  carb: 18.0, fat: 1.5,  unit: '100g'  },
+    //     'dal tadka':      { cal: 130, pro: 7.5,  carb: 18.0, fat: 3.0,  unit: '100g'  },
+    //     'rajma':          { cal: 143, pro: 8.7,  carb: 22.0, fat: 2.0,  unit: '100g'  },
+    //     'chole':          { cal: 164, pro: 8.9,  carb: 27.0, fat: 2.6,  unit: '100g'  },
+    //     'paneer':         { cal: 265, pro: 18.3, carb: 1.2,  fat: 20.8, unit: '100g'  },
+    //     'butter chicken': { cal: 165, pro: 15.0, carb: 8.0,  fat: 8.0,  unit: '100g'  },
+    //     'chicken curry':  { cal: 155, pro: 15.0, carb: 5.0,  fat: 8.0,  unit: '100g'  },
+    //     'mutton curry':   { cal: 180, pro: 16.0, carb: 4.0,  fat: 11.0, unit: '100g'  },
+    //     'fish curry':     { cal: 140, pro: 18.0, carb: 4.0,  fat: 6.0,  unit: '100g'  },
+    //     'samosa':         { cal: 262, pro: 5.0,  carb: 30.0, fat: 14.0, unit: 'piece' },
+    //     'pakora':         { cal: 160, pro: 4.0,  carb: 18.0, fat: 8.0,  unit: 'piece' },
+    //     'poha':           { cal: 158, pro: 3.5,  carb: 30.0, fat: 3.0,  unit: '100g'  },
+    //     'chai':           { cal: 45,  pro: 1.5,  carb: 6.0,  fat: 1.5,  unit: 'cup'   },
+    //     'lassi':          { cal: 150, pro: 5.0,  carb: 18.0, fat: 6.0,  unit: 'cup'   },
+    //     'mint lemon':     { cal: 40,  pro: 0.02, carb: 9.77, fat: 0.01, unit: '100ml' },
+    //     'milk':           { cal: 61,  pro: 3.2,  carb: 4.8,  fat: 3.3,  unit: '100ml' },
+    //     'egg':            { cal: 78,  pro: 6.0,  carb: 0.6,  fat: 5.0,  unit: 'piece' },
+    //     'banana':         { cal: 89,  pro: 1.1,  carb: 23.0, fat: 0.3,  unit: 'piece' },
+    //     'apple':          { cal: 52,  pro: 0.3,  carb: 14.0, fat: 0.2,  unit: '100g'  },
+    //     'watermelon':     { cal: 30,  pro: 0.6,  carb: 7.6, fat: 0.15,  unit: '100g'  },
+    //     'chicken':        { cal: 165, pro: 31.0, carb: 0.0,  fat: 3.6,  unit: '100g'  },
+    //     'mutton':         { cal: 294, pro: 25.6, carb: 0.0,  fat: 21.0, unit: '100g'  },
+    //     'fish':           { cal: 128, pro: 20.0, carb: 0.0,  fat: 5.0,  unit: '100g'  },
+    // };
 
     // Find longest matching food name
     let matchedFood = null;
     let matchedKey  = null;
 
-    for (const [key, value] of Object.entries(indianFoods)) {
+    for (const [key, value] of Object.entries(indianFoodDatabase)) {
         if (q.includes(key)) {
             if (!matchedKey || key.length > matchedKey.length) {
                 matchedFood = value;
