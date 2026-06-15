@@ -44,7 +44,8 @@ export const indianFoodDatabase = {
     'chicken':        { cal: 165, pro: 31.0, carb: 0.0,  fat: 3.6,  unit: '100g'  },
     'mutton':         { cal: 294, pro: 25.6, carb: 0.0,  fat: 21.0, unit: '100g'  },
     'fish':           { cal: 128, pro: 20.0, carb: 0.0,  fat: 5.0,  unit: '100g'  },
-    'green gram dal': { cal: 326, pro: 23.88, carb: 52.59, fat: 1.35, unit: '100g' }
+    'green gram dal': { cal: 326, pro: 23.88, carb: 52.59, fat: 1.35, unit: '100g' },
+    'green apple': { cal: 326, pro: 23.88, carb: 52.59, fat: 1.35, unit: '100g' },
 };
 
 // ── Export food names list for autocomplete ──
