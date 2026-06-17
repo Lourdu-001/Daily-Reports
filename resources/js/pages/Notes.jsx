@@ -1,23 +1,17 @@
+import { useSelector } from "react-redux";
+import EventManagement from "../components/EventManagement";
 
-import react from 'react'
+export default function Notes() {;
 
-export function tool(tablename) {
+  const count = useSelector(
+      state => state.counter.count
+  )
 
-  let a;
-
-  if(tablename == "sector5") {
-    a = "sector5 successfully intiallized";
-  } else {
-    a = "failed to connect sector5";
-  }
-
-  return a;
-}
-
-export default function Notes() {
-  return (
+  return(
     <>
-      <div className="bg-[url(/assets/images/pattern-cover.webp)]  bg-cover"></div>
+      hello { count }
+
+      <EventManagement />
     </>
   )
 }

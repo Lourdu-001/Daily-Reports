@@ -518,14 +518,14 @@ export default function Food() {
             />
 
             {/* ── Header ── */}
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex md:flex-row flex-col md:items-center items-start justify-between mb-6">
                 <div>
                     <h1 className="text-3xl font-bold text-gray-800 dark:text-white">🍎 Food</h1>
                     <p className="text-gray-500 dark:text-gray-400 mt-1">Track your daily meals and nutrition</p>
                 </div>
                 <button
                     onClick={handleAdd}
-                    className="bg-green-700 text-white px-5 py-2 rounded-xl font-semibold hover:bg-green-800 transition"
+                    className="bg-green-700 text-white px-5 py-2 md:mt-0 mt-3.5 rounded-xl font-semibold hover:bg-green-800 transition"
                 >
                     + Add Meal
                 </button>

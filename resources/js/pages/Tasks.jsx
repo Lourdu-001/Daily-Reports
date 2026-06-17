@@ -488,7 +488,7 @@ export default function Tasks() {
                     {filteredTasks.map((task) => (
                         <div
                             key={task.id}
-                            className={`bg-white dark:bg-gray-800 rounded-2xl shadow p-5 flex items-start justify-between gap-4 ${
+                            className={`bg-white dark:bg-gray-800 rounded-2xl shadow p-5 flex md:flex-row flex-col items-start justify-between gap-4 ${
                                 task.status === 'completed' ? 'opacity-60' : ''
                             }`}
                         >

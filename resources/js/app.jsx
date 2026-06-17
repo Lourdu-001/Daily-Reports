@@ -5,6 +5,8 @@ import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Layout from './components/Layout';
+// import { Provider } from "react-redux";
+// import { store } from './config/store'
 
 import Login     from './pages/Login';
 import Register  from './pages/Register';
@@ -30,7 +32,7 @@ function App() {
                         {/* Protected Routes with Layout */}
                         <Route path="/dashboard" element={
                             <ProtectedRoute>
-                                <Layout><Dashboard /></Layout>
+                                    <Layout><Dashboard /></Layout>
                             </ProtectedRoute>
                         }/>
                         <Route path="/tasks" element={
@@ -40,7 +42,7 @@ function App() {
                         }/>
                         <Route path="/workout" element={
                             <ProtectedRoute>
-                                <Layout><Workout /></Layout>
+                                    <Layout bgCover="/assets/images/cardio.jpg"><Workout /></Layout>
                             </ProtectedRoute>
                         }/>
                         <Route path="/food" element={
@@ -55,11 +57,13 @@ function App() {
                             </ProtectedRoute>
                         }/>
 
-                        <Route path="/notes" element={
+                        {/* <Route path="/notes" element={
                             <ProtectedRoute>
-                                <Layout><Notes /></Layout>
+                                <Provider store={store}>
+                                    <Layout><Notes /></Layout>
+                                </Provider>
                             </ProtectedRoute>
-                        }/>
+                        }/> */}
 
                         {/* Default */}
                         <Route path="/" element={<Navigate to="/dashboard" replace />} />

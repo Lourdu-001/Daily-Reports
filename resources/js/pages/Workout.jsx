@@ -119,15 +119,16 @@ export default function Workout() {
 
     return (
         <div>
+
             {/* Header */}
-            <div className="flex items-center justify-between mb-8">
+            <div className="md:mt-14 mt-0 flex md:flex-row flex-col md:items-center items-start justify-between mb-8">
                 <div>
                     <h1 className="text-3xl font-bold text-gray-800 dark:text-white">💪 Workout</h1>
-                    <p className="text-gray-500 dark:text-gray-400 dark:text-gray-500 mt-1">Track your daily workout plans</p>
+                    <p className="text-gray-500 dark:text-gray-500 mt-1">Track your daily workout plans</p>
                 </div>
                 <button
                     onClick={handleAdd}
-                    className="bg-green-700 text-white px-5 py-2 rounded-xl font-semibold hover:bg-green-800 transition"
+                    className="bg-green-700 text-white px-5 py-2 md:mt-0 mt-5 rounded-xl font-semibold hover:bg-green-800 transition"
                 >
                     + Add Workout
                 </button>
@@ -149,7 +150,7 @@ export default function Workout() {
 
                     <form onSubmit={handleSubmit} className="space-y-4">
 
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid md:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">
                                     Exercise Name
@@ -183,7 +184,7 @@ export default function Workout() {
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="grid md:grid-cols-3 gap-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">
                                     Sets
@@ -230,7 +231,7 @@ export default function Workout() {
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid md:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-1">
                                     Notes
