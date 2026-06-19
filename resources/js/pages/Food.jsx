@@ -3,7 +3,7 @@ import api from '../services/api';
 import { getNutrition } from '../services/nutrition';
 
 // resources/js/services/nutrition.js
-import { indianFoodDatabase } from '../config/nutritionData';
+import { indianFoodDatabase } from '../store/nutritionData';
 
 // ── Food Modal Component ──
 function FoodModal({ show, onClose, onSubmit, form, onChange, onAutoFill, searching, editFood, error }) {

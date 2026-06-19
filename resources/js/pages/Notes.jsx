@@ -1,17 +1,9 @@
-import { useSelector } from "react-redux";
-import EventManagement from "../components/EventManagement";
+import Todo from "../components/Todo"
 
-export default function Notes() {;
-
-  const count = useSelector(
-      state => state.counter.count
-  )
-
-  return(
+export default function Notes() {
+  return (
     <>
-      hello { count }
-
-      <EventManagement />
+      <Todo />
     </>
   )
 }
