@@ -164,6 +164,8 @@ export default function Profile() {
         { id: 'danger',   label: 'Danger Zone',   icon: '⚠️'  },
     ];
 
+    // sample
+
     return (
         <div className="max-w-2xl mx-auto mt-12">
 
