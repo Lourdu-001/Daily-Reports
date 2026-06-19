@@ -18,6 +18,7 @@ export const indianFoodDatabase = {
     'paratha':        { cal: 180, pro: 4.0,  carb: 28.0, fat: 6.0,  unit: 'piece' },
     'naan':           { cal: 262, pro: 8.7,  carb: 45.0, fat: 5.1,  unit: 'piece' },
     'ragi':           { cal: 336, pro: 7.3,  carb: 72.0, fat: 0.37,  unit: '100g'  },
+    'rava':           { cal: 326, pro: 11.4,  carb: 68.4, fat: 0.7,  unit: '100g'  },
     'semiya':         { cal: 350, pro: 8.7,  carb: 75.0, fat: 0.4,  unit: '100g' },
     'puri':           { cal: 150, pro: 3.0,  carb: 22.0, fat: 6.0,  unit: 'piece' },
     'dal':            { cal: 115, pro: 7.0,  carb: 18.0, fat: 1.5,  unit: '100g'  },

@@ -5,8 +5,8 @@ import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Layout from './components/Layout';
-// import { Provider } from "react-redux";
-// import { store } from './config/store'
+import { Provider } from "react-redux";
+import { store } from './store/store'
 
 import Login     from './pages/Login';
 import Register  from './pages/Register';
@@ -57,13 +57,13 @@ function App() {
                             </ProtectedRoute>
                         }/>
 
-                        {/* <Route path="/notes" element={
+                        <Route path="/notes" element={
                             <ProtectedRoute>
                                 <Provider store={store}>
                                     <Layout><Notes /></Layout>
                                 </Provider>
                             </ProtectedRoute>
-                        }/> */}
+                        }/>
 
                         {/* Default */}
                         <Route path="/" element={<Navigate to="/dashboard" replace />} />

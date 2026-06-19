@@ -1,4 +1,4 @@
-import { indianFoodDatabase } from '../config/nutritionData';
+import { indianFoodDatabase } from '../store/nutritionData';
 
 export async function getNutrition(foodQuery) {
 
