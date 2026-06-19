@@ -165,7 +165,7 @@ export default function Profile() {
     ];
 
     return (
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-2xl mx-auto mt-12">
 
             {/* ── Header ── */}
             <div className="mb-6">

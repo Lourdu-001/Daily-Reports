@@ -118,13 +118,13 @@ export default function Workout() {
     };
 
     return (
-        <div>
+        <div className="mt-12">
 
             {/* Header */}
             <div className="md:mt-14 mt-0 flex md:flex-row flex-col md:items-center items-start justify-between mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-gray-800 dark:text-white">💪 Workout</h1>
-                    <p className="text-gray-500 dark:text-gray-500 mt-1">Track your daily workout plans</p>
+                    <h1 className="text-3xl font-bold text-white/80">💪 Workout</h1>
+                    <p className="text-white/80 mt-1">Track your daily workout plans</p>
                 </div>
                 <button
                     onClick={handleAdd}

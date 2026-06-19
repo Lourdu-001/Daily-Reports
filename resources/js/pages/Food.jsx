@@ -502,7 +502,7 @@ export default function Food() {
     };
 
     return (
-        <div>
+        <div className="mt-12">
 
             {/* ── Modal ── */}
             <FoodModal

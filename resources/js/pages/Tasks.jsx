@@ -278,7 +278,7 @@ export default function Tasks() {
     };
 
     return (
-        <div>
+        <div className="mt-12">
             {/* ── Modal ── */}
             <TaskModal
                 show={showModal}
