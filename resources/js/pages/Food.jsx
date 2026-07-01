@@ -166,10 +166,11 @@ function FoodModal({ show, onClose, onSubmit, form, onChange, onAutoFill, search
                                     placeholder="e.g. idly 2, mutton biryani 300g"
                                     required
                                 />
+                                {/* <input type="+text" autoComplete="off" name="quantity" placeholder="Quantity" value={form.quantity} className="w-[25%] border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"  /> */}
                                 <button
                                     type="button"
                                     onClick={onAutoFill}
-                                    disabled={searching || !form.food_name.trim()}
+                                    disabled={ searching || !form.food_name.trim() }
                                     className="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition disabled:opacity-50 whitespace-nowrap text-sm"
                                 >
                                     {searching ? '⏳...' : '✨ Auto Fill'}
@@ -298,6 +299,7 @@ export default function Food() {
 
     const [form, setForm] = useState({
         food_name: '',
+        quantity: '',
         meal_type: 'breakfast',
         calories:  '',
         protein:   '',
@@ -364,16 +366,16 @@ export default function Food() {
     };
 
     const handleAutoFill = async () => {
-        if (!form.food_name.trim()) {
+        if (!form.food_name.trim() && !form.quantity.trim()) {
             setError('Please enter a food name first!');
             return;
         }
-        setSearching(true);
+        // setSearching(true);
         setForm(prev => ({ ...prev, calories: '', protein: '', carbs: '', fats: '' }));
         setError('');
 
         try {
-            const nutrition = await getNutrition(form.food_name);
+            const nutrition = await getNutrition(form.food_name, form.quantity);
             if (nutrition.found) {
                 setForm(prev => ({
                     ...prev,

@@ -2,6 +2,7 @@
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { createDefaultImportMeta } from "vite/module-runner";
 
 export const fetchUsers =
     createAsyncThunk(
@@ -85,3 +86,13 @@ export const {
 } = todoSlice.actions;
 
 export default todoSlice.reducer;
+
+// Redux generates action
+// Export actions
+// import in component
+// import { data } from "react-router-dom";
+// dispatch(action())
+// Reducer runs
+// store updated
+// useSelector gets new data
+// UI Re-renders

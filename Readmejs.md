@@ -153,6 +153,27 @@ closuer:
       A closure is created when an inner function remembers and accesses variables from its outer scope even after the outer function has finished executing. JavaScript preserves those variables because the inner function still references them.
 
 
+self intro;
+    My name is lourdushelton. I have experienced in html, css, php, javascript and libraries for javascript like react. I have developed around on 35+ projects, animations, dashbords and cms based platforms.
+
+    I have experience in user experience, and rest api integration, dynamic router, website performace optimization. I have worked in hosting platforms like cloudflare, railways, which help me to understand production environment and debugging challenges.
+
+    I enjoy build scalable, interactive user interfaces by following ui design and cross platform browser compatibility. I am passionate to working with new technologies and user experience and avoid unnessary problem solving issues by coordinating with a team.
+
+
+one my recent project is a daily reports build using php, laravel, mysql, and react. The purpose of the application is to help users track their daily activities such as food intake, workouts, and personal tasks in a single dashboard. I developed the backend using laravel and i used laravel sanctum for user authentication and session management. and I was build frontend using react, where the user can create, update and delete and monitor their daily reports.
+
+what is your last project explain?
+
+    one of my recent project is a daily report application build using laravel, php, mysql. this application help user to track their daily activities such as food intake, workout plans, and personal task in a single dashboard.
+
+    I developed the backend api using laravel and using laravel sactum for user authentication and session management. The front end was build using only 
+
+
+
+
+
+
 
 
 

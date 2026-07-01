@@ -1,5 +1,4 @@
 // src/components/Todo.jsx
-
 import { useState } from "react";
 
 import {
@@ -15,6 +14,8 @@ import {
 function Todo() {
 
     const [text, setText] = useState("");
+
+    const [ show, setShow ] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -81,6 +82,11 @@ function Todo() {
 
             </ul>
 
+            <button>show results of [ API ]</button>
+            
+            {
+
+            }
         </div>
 
     );
