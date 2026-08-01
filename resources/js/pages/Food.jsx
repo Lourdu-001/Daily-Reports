@@ -6,7 +6,7 @@ import { getNutrition } from '../services/nutrition';
 import { indianFoodDatabase } from '../store/nutritionData';
 
 // ── Food Modal Component ──
-function FoodModal({ show, onClose, onSubmit, form, onChange, onAutoFill, searching, editFood, error }) {
+function FoodModal({ show, onClose, onSubmit, form, onChange, onAutoFill, searching, editFood, error, handleChange }) {
     const [suggestions, setSuggestions] = useState([]);
     const [showDropdown, setShowDropdown] = useState(false);
 
@@ -90,6 +90,7 @@ function FoodModal({ show, onClose, onSubmit, form, onChange, onAutoFill, search
             const filtered = newArray.filter(food =>
                 food.toLowerCase().startsWith(value.toLowerCase())
             );
+
             setSuggestions(filtered.slice(0, 6)); // show max 6
             setShowDropdown(filtered.length > 0);
         } else {
@@ -113,13 +114,6 @@ function FoodModal({ show, onClose, onSubmit, form, onChange, onAutoFill, search
     };
 
     if (!show) return null;
-
-    // useEffect(() => {
-    //     console.log(indianFoodDatabase);
-    //     for(const[key, value] of Object.entries(indianFoodDatabase)) {
-    //         console.log(`${key}` +  " " + `${value}`);
-    //     }
-    // }, [])
 
     return (
         <>
@@ -166,7 +160,15 @@ function FoodModal({ show, onClose, onSubmit, form, onChange, onAutoFill, search
                                     placeholder="e.g. idly 2, mutton biryani 300g"
                                     required
                                 />
-                                {/* <input type="+text" autoComplete="off" name="quantity" placeholder="Quantity" value={form.quantity} className="w-[25%] border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"  /> */}
+                                <input 
+                                    type="text" 
+                                    autoComplete="off" 
+                                    name="quantity" 
+                                    placeholder="Quantity" 
+                                    value={form.quantity} 
+                                    onChange={handleChange} 
+                                    className="w-[25%] border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" 
+                                />
                                 <button
                                     type="button"
                                     onClick={onAutoFill}
@@ -332,6 +334,7 @@ export default function Food() {
         setForm({
             food_name: '',
             meal_type: 'breakfast',
+            quantity: '',
             calories:  '',
             protein:   '',
             carbs:     '',
@@ -347,6 +350,7 @@ export default function Food() {
         setEditFood(food);
         setForm({
             food_name: food.food_name,
+            quantity: food.quantity,
             meal_type: food.meal_type,
             calories:  food.calories  ?? '',
             protein:   food.protein   ?? '',
@@ -365,11 +369,13 @@ export default function Food() {
         setError('');
     };
 
+
     const handleAutoFill = async () => {
         if (!form.food_name.trim() && !form.quantity.trim()) {
             setError('Please enter a food name first!');
             return;
         }
+
         // setSearching(true);
         setForm(prev => ({ ...prev, calories: '', protein: '', carbs: '', fats: '' }));
         setError('');
@@ -517,6 +523,7 @@ export default function Food() {
                 searching={searching}
                 editFood={editFood}
                 error={error}
+                handleChange={handleChange}
             />
 
             {/* ── Header ── */}

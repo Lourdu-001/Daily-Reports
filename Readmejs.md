@@ -1,11 +1,19 @@
 what is the difference between var and let and const?
 is this a different
 
-
-
 closures:
 -------
    A closure allows a function to access variables from its outer scope even after the outer function has completed execution. It is commonly used for data privacy, maintaining state, and function factories.
+
+   example:
+   --------
+   function outerFunction() {
+        let count=0;
+
+        return function inner() {
+            console.log(name);
+        }
+   }
 
    example:
    ---------
@@ -17,6 +25,8 @@ closures:
         console.log(count);
     };
    }
+
+   hoisting is a javascript behaviour where variable and function declaration are processed before code execution. Function declaration are fully hoisted, while variables declared with var are hoisted and initialized with undefined. Variables declared 
 
 
 hoisting:
